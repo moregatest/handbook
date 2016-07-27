@@ -1,0 +1,25 @@
+```shell
+find /APP/readyscript/pc2-template/ -name "*.php" -exec grep -nH "pcc::str2sql(\$OBJ\['id'" {} \;
+```
+```shell
+find /www/Main/inq.ready-market.com/ -name "*.php" -exec grep -nH "_SESSION\['cinfo'\]" {} \; > log
+```
+```shell
+find /APP/readyscript/pc2-template/ -name "*.php" -exec grep -nH "selfDomainURL" {} \;
+```
+```shell
+find /APP/readyscript/pc2-template/ -name "*.php" -exec grep -nH "selfurl" {} \;
+```
+大量取代
+```shell
+find /APP/readyscript/pc2-template/ -name "*.php" | xargs sed -i 's/,selfDomainURL()/,pc::selfDomainURL()/g'
+find /APP/readyscript/pc2-template/customized-anko -name "*.php" | xargs sed -i 's/,selfurl()/,pc::selfURL()/g'
+```
+正規搜尋某類型檔案內的字串 符合正則者 取出並去除重複 
+```shell
+find /APP/readyscript/pc2-template -name "*.po" -exec grep -E -o 'msgid "[^"]+"' {} \;|grep -E -o '"[^"]+"' | sort |uniq > po.log
+```
+然後排序 字串最長者在上
+```shell
+awk '{ print length(), $0 | "sort -nr" }' po.log|uniq  > po-all.log
+```
