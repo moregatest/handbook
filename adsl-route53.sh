@@ -1,7 +1,8 @@
 #!/bin/bash
-#讀取跟目錄的adsl.txt檔案 並自動撥接ADSL 並更新router53的recordser
+#讀取跟目錄的adsl.txt檔案 並自動撥接ADSL 並更新route53的recordser
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-ZONEID="ZVH75PP42YZ8R"
+#請填上需要更新的route53 zone id
+ZONEID="xxxxx-xxxx"
 SERIAL=$(cat /proc/cpuinfo | tail -c 5)i
 RECORDSET="${SERIAL}.pi.ready-market.com"
 DATE=`date +%Y-%m-%d:%H:%M:%S`
